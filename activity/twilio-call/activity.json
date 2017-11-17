@@ -1,0 +1,32 @@
+{
+  "name": "tibco-twilio-call",
+  "type": "flogo:activity",
+  "ref": "github.com/rmprabhu/flogo-contrib/activity/twilio-call",
+  "version": "0.0.1",
+  "title": "Call using Twilio",
+  "description": "Simple Twilio Activity",
+  "homepage": "https://github.com/TIBCOSoftware/flogo-contrib/tree/master/activity/twilio",
+  "inputs":[
+    {
+      "name": "accountSID",
+      "type": "string"
+    },
+    {
+      "name": "authToken",
+      "type": "string"
+    },
+    {
+      "name": "from",
+      "type": "string"
+    },
+    {
+      "name": "to",
+      "type": "string"
+    },
+    {
+      "name": "URL",
+      "type": "string"
+    }
+  ],
+  "outputs": []
+}
