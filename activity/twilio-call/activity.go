@@ -14,7 +14,7 @@ const (
 	ivAuthToken = "authToken"
 	ivFrom      = "from"
 	ivTo        = "to"
-	ivURL   = "url"
+	ivURL       = "url"
 )
 
 // TwilioActivity is a Twilio Activity implementation
@@ -42,11 +42,10 @@ func (a *TwilioActivity) Eval(context activity.Context) (done bool, err error) {
 	URL := context.GetInput(ivURL).(string)
 
 	twilio := gotwilio.NewTwilioClient(accountSID, authToken)
-	
+
 	callbackParams := gotwilio.NewCallbackParameters(URL)
-	
+
 	resp, _, err := twilio.CallWithUrlCallbacks(from, to, callbackParams)
-}
 
 	if err != nil {
 		log.Error("Error making voice call:", err)
