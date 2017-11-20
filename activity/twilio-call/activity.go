@@ -41,9 +41,11 @@ func (a *TwilioActivity) Eval(context activity.Context) (done bool, err error) {
 	to := context.GetInput(ivTo).(string)
 	url := context.GetInput(ivURL).(string)
 
+//Added callbackparams ivURL
+
 	twilio := gotwilio.NewTwilioClient(accountSID, authToken)
 
-	callbackParams := gotwilio.NewCallbackParameters(URL)
+	callbackParams := gotwilio.NewCallbackParameters(url)
 
 	resp, _, err := twilio.CallWithUrlCallbacks(from, to, callbackParams)
 
