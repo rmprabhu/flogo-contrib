@@ -39,7 +39,7 @@ func (a *TwilioActivity) Eval(context activity.Context) (done bool, err error) {
 	authToken := context.GetInput(ivAuthToken).(string)
 	from := context.GetInput(ivFrom).(string)
 	to := context.GetInput(ivTo).(string)
-	URL := context.GetInput(ivURL).(string)
+	url := context.GetInput(ivURL).(string)
 
 	twilio := gotwilio.NewTwilioClient(accountSID, authToken)
 
