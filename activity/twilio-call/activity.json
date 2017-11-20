@@ -5,7 +5,7 @@
   "version": "0.0.1",
   "title": "Call using Twilio",
   "description": "Simple Twilio Activity",
-  "homepage": "https://github.com/TIBCOSoftware/flogo-contrib/tree/master/activity/twilio",
+  "homepage": "https://github.com/rmprabhu/flogo-contrib/tree/master/activity/twilio-call",
   "inputs":[
     {
       "name": "accountSID",
@@ -24,7 +24,7 @@
       "type": "string"
     },
     {
-      "name": "URL",
+      "name": "url",
       "type": "string"
     }
   ],

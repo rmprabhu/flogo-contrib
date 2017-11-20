@@ -52,7 +52,7 @@ func TestEval(t *testing.T) {
 	tc.SetInput(ivAuthToken, "f...4")
 	tc.SetInput(ivTo, "+1...")
 	tc.SetInput(ivFrom, "+12016901385")
-	tc.SetInput(ivMessage, "Go Flogo")
+	tc.SetInput(ivURL, "https://demo.twilio.com/docs/voice.xml")
 
 	act.Eval(tc)
 
