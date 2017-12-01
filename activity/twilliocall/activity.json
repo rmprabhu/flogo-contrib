@@ -4,7 +4,8 @@
   "ref": "github.com/rmprabhu/flogo-contrib/activity/twilliocall",
   "version": "0.0.1",
   "title": "Call using Twilio",
-  "description": "Simple Twilio Activity",
+  "description": "Simple Twilio Activity to make a voice call",
+  "author":"Rohit Prabhu <rprabhu@tibco.com>",
   "homepage": "https://github.com/rmprabhu/flogo-contrib/tree/master/activity/twilliocall",
   "inputs":[
     {
