@@ -3,7 +3,7 @@ package revgeocode
 import (
 	"github.com/TIBCOSoftware/flogo-lib/core/activity"
 	"github.com/TIBCOSoftware/flogo-lib/logger"
-	"github.com/martinlindhe/google-geolocate"
+	 geo "github.com/martinlindhe/google-geolocate"
 )
 
 // log is the default package logger
@@ -13,6 +13,7 @@ const (
 	ivAPIkey = "apiKey"
 	ivLat    = "lat"
 	ivLang   = "lang"
+	ovLocation = "location"
 )
 
 // GeoCodeActivity is a Geocode Activity implementation
@@ -20,7 +21,7 @@ type RevGeoCodeActivity struct {
 	metadata *activity.Metadata
 }
 
-// NewActivity creates a new TwilioActivity
+// NewActivity creates a new GeoCodeActivity
 func NewActivity(metadata *activity.Metadata) activity.Activity {
 	return &RevGeoCodeActivity{metadata: metadata}
 }
@@ -31,21 +32,22 @@ func (a *RevGeoCodeActivity) Metadata() *activity.Metadata {
 }
 
 // Eval implements activity.Activity.Eval
-func (a *GeoCodeActivity) Eval(context activity.Context) (done bool, err error) {
+func (a *RevGeoCodeActivity) Eval(context activity.Context) (done bool, err error) {
 
 	apiKey := context.GetInput(ivAPIkey).(string)
-	lat := context.GetInput(ivLat).(string)
-	lang := context.GetInput(ivLang).(string)
+	lat := context.GetInput(ivLat).(float64)
+	lang := context.GetInput(ivLang).(float64)
+	location:= "location"
 
 	gclient := geo.NewGoogleGeo(apiKey)
 	gpoint := geo.Point{Lat: lat, Lng: lang}
-	resp, _, err := gclient.ReverseGeocode(&gpoint)
+	resp, _ := gclient.ReverseGeocode(&gpoint)
 
 	if err != nil {
 		log.Error("Error translating location:", err)
 	}
+  log.Debug("Response:", resp)
 
-	log.Debug("Response:", resp)
-
-	return resp
+  context.SetOutput(location, resp)
+	return true, nil
 }
