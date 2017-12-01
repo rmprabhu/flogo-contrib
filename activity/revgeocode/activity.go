@@ -37,7 +37,8 @@ func (a *RevGeoCodeActivity) Eval(context activity.Context) (done bool, err erro
 	apiKey := context.GetInput(ivAPIkey).(string)
 	lat := context.GetInput(ivLat).(float64)
 	lang := context.GetInput(ivLang).(float64)
-	
+	location:="location"
+
 	gclient := geo.NewGoogleGeo(apiKey)
 	gpoint := geo.Point{Lat: lat, Lng: lang}
 	resp, err := gclient.ReverseGeocode(&gpoint)
@@ -49,6 +50,6 @@ func (a *RevGeoCodeActivity) Eval(context activity.Context) (done bool, err erro
 
 	log.Debug("Response:", resp)
 
-	context.SetOutput(ovLocation, resp)
+	context.SetOutput(location, resp)
 	return true, nil
 }
