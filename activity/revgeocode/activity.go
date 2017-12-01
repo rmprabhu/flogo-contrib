@@ -43,9 +43,6 @@ func (a *RevGeoCodeActivity) Eval(context activity.Context) (done bool, err erro
 	gpoint := geo.Point{Lat: lat, Lng: lang}
 	resp, _ := gclient.ReverseGeocode(&gpoint)
 
-	if err != nil {
-		log.Error("Error translating location:", err)
-	}
   log.Debug("Response:", resp)
 
   context.SetOutput(location, resp)
