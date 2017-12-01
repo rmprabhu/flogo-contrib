@@ -3,16 +3,16 @@ package revgeocode
 import (
 	"github.com/TIBCOSoftware/flogo-lib/core/activity"
 	"github.com/TIBCOSoftware/flogo-lib/logger"
-	 geo "github.com/martinlindhe/google-geolocate"
+	geo "github.com/martinlindhe/google-geolocate"
 )
 
 // log is the default package logger
 var log = logger.GetLogger("activity-tibco-revgeocode")
 
 const (
-	ivAPIkey = "apiKey"
-	ivLat    = "lat"
-	ivLang   = "lang"
+	ivAPIkey   = "apiKey"
+	ivLat      = "lat"
+	ivLang     = "lang"
 	ovLocation = "location"
 )
 
@@ -37,14 +37,18 @@ func (a *RevGeoCodeActivity) Eval(context activity.Context) (done bool, err erro
 	apiKey := context.GetInput(ivAPIkey).(string)
 	lat := context.GetInput(ivLat).(float64)
 	lang := context.GetInput(ivLang).(float64)
-	location:= "location"
-
+	
 	gclient := geo.NewGoogleGeo(apiKey)
 	gpoint := geo.Point{Lat: lat, Lng: lang}
-	resp, _ := gclient.ReverseGeocode(&gpoint)
+	resp, err := gclient.ReverseGeocode(&gpoint)
 
-  log.Debug("Response:", resp)
+	if err != nil {
+		log.Error("Error translating location:", err)
+	}
 
-  context.SetOutput(location, resp)
+
+	log.Debug("Response:", resp)
+
+	context.SetOutput(ovLocation, resp)
 	return true, nil
 }
