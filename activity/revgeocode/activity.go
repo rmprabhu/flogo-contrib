@@ -1,6 +1,7 @@
 package revgeocode
 
 import (
+	"strconv"
 	"github.com/TIBCOSoftware/flogo-lib/core/activity"
 	"github.com/TIBCOSoftware/flogo-lib/logger"
 	geo "github.com/martinlindhe/google-geolocate"
@@ -35,13 +36,17 @@ func (a *RevGeoCodeActivity) Metadata() *activity.Metadata {
 func (a *RevGeoCodeActivity) Eval(context activity.Context) (done bool, err error) {
 
 	apiKey := context.GetInput(ivAPIkey).(string)
-	lat := context.GetInput(ivLat).(float64)
-	lang := context.GetInput(ivLang).(float64)
+	lat := context.GetInput(ivLat).(string)
+	lang := context.GetInput(ivLang).(string)
+
+  flat, err:= strconv.ParseFloat(lat, 64)
+	flang, err:= strconv.ParseFloat(lang, 64)
+
 	location:="location"
 
 	gclient := geo.NewGoogleGeo(apiKey)
-	gpoint := geo.Point{Lat: lat, Lng: lang}
-	resp, err := gclient.ReverseGeocode(&gpoint)
+	gpoint := geo.Point{Lat: flat, Lng: flang}
+  resp, err := gclient.ReverseGeocode(&gpoint)
 
 	if err != nil {
 		log.Error("Error translating location:", err)

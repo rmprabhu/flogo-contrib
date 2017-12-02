@@ -48,9 +48,9 @@ func TestEval(t *testing.T) {
 	tc := test.NewTestActivityContext(getActivityMetadata())
 
 	//setup attrs
-	tc.SetInput(ivAPIkey, "A...9")
-	tc.SetInput(ivLat, "10.....9")
-	tc.SetInput(ivLang, "40....8")
+	tc.SetInput(ivAPIkey, "AIzaSyCNDz05ksVA6WTqxZmrRt8NU-5BJ4LMGd8")
+	tc.SetInput(ivLat, "34.190351")
+	tc.SetInput(ivLang, "-118.594582")
 
 	act.Eval(tc)
 
