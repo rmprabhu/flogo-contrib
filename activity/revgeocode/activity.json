@@ -3,8 +3,8 @@
   "type": "flogo:activity",
   "ref": "github.com/TIBCOSoftware/flogo-contrib/activity/revgeocode",
   "version": "0.0.1",
-  "title": "Reverse Geocode Using Google maps",
-  "description": "Reverese geocode Using Google Maps",
+  "title": "Reverse Geocode Using Google Maps",
+  "description": "Reverse geocode Using Google Maps",
   "author":"Rohit Prabhu <rprabhu@tibco.com>",
   "homepage": "https://github.com/rmprabhu/flogo-contrib/tree/master/activity/revgeocode",
   "inputs":[
