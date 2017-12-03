@@ -13,7 +13,7 @@ var log = logger.GetLogger("activity-tibco-revgeocode")
 const (
 	ivAPIkey   = "apiKey"
 	ivLat      = "lat"
-	ivLang     = "lang"
+	ivLong     = "long"
 	ovLocation = "location"
 )
 
@@ -37,15 +37,15 @@ func (a *RevGeoCodeActivity) Eval(context activity.Context) (done bool, err erro
 
 	apiKey := context.GetInput(ivAPIkey).(string)
 	lat := context.GetInput(ivLat).(string)
-	lang := context.GetInput(ivLang).(string)
+	long := context.GetInput(ivLong).(string)
 
   flat, err:= strconv.ParseFloat(lat, 64)
-	flang, err:= strconv.ParseFloat(lang, 64)
+	flong, err:= strconv.ParseFloat(long, 64)
 
 	location:="location"
 
 	gclient := geo.NewGoogleGeo(apiKey)
-	gpoint := geo.Point{Lat: flat, Lng: flang}
+	gpoint := geo.Point{Lat: flat, Lng: flong}
   resp, err := gclient.ReverseGeocode(&gpoint)
 
 	if err != nil {

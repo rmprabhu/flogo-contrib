@@ -1,11 +1,11 @@
-# tibco-twilio
-This activity provides your flogo application the ability to send a SMS via Twilio.
+# tibco-revgeocode
+This activity provides your flogo application the ability to get address from coordinates using google maps API.
 
 
 ## Installation
 
 ```bash
-flogo add activity github.com/TIBCOSoftware/flogo-contrib/activity/twilio
+flogo add activity github.com/rprabhu/flogo-contrib/activity/revgeocode
 ```
 
 ## Schema
@@ -15,77 +15,66 @@ Inputs and Outputs:
 {
   "inputs":[
     {
-      "name": "accountSID",
+      "name": "apiKey",
       "type": "string"
     },
     {
-      "name": "authToken",
+      "name": "lat",
       "type": "string"
     },
-    {
-      "name": "from",
-      "type": "string"
-    },
-    {
-      "name": "to",
-      "type": "string"
-    },
-    {
-      "name": "message",
+	{
+      "name": "long",
       "type": "string"
     }  
   ],
-  "outputs": []
+  "outputs": [
+     {
+       "name": "location",
+       "type": "string"
+     }
+  ]
 }
 ```
 ## Settings
 | Setting     | Description    |
 |:------------|:---------------|
-| accountSID | The Twilio account SID |         
-| authToken  | The Twilio auth token  |
-| from       | The Twilio number you are sending the SMS from |
-| to         | The number you are sending the SMS to |
-| message    | The SMS message |
-Note: 
-Phone numbers should be in the format '+15555555555'
+| apiKey      | The Google Maps API key |         
+| lat         | Latitude  |
+| long        | Longitude |
 
 ## Configuration Examples
 ### Simple
-Configure a task in flow to send 'my text message' to '617-555-5555' via Twilio:
+Configure a task in flow to get address from co-oordinates via Google Maps API:
 
 ```json
 {
   "id": 3,
   "type": 1,
-  "activityType": "tibco-twilio",
-  "name": "Send Text Message",
+  "activityType": "tibco-revgeocode",
+  "name": "Get Location",
   "attributes": [
-    { "name": "accountSID", "value": "A...9" },
-    { "name": "authToken", "value": "A...9" },
-    { "name": "from", "value": "+12016901385" },
-    { "name": "to", "value": "+16175555555" },
-    { "name": "message", "value": "my text message" }
+    { "name": "apiKey", "value": "A...9" },
+    { "name": "lat", "value": "40.33...." },
+    { "name": "long", "value": "-10.99....." }
   ]
 }
 ```
 
 ### Advanced
-Configure a task in flow to send 'my text message' to a number from a REST trigger's query parameter:
+Configure a task in flow to get address from co-oordintes via Google Maps API from a REST trigger's query parameter:
 
 ```json
 {
   "id": 3,
   "type": 1,
-  "activityType": "tibco-twilio",
-  "name": "Send Text Message",
+  "activityType": "tibco-revgeocode",
+  "name": "Get Location",
   "attributes": [
-    { "name": "accountSID", "value": "A...9" },
-    { "name": "authToken", "value": "A...9" },
-    { "name": "from", "value": "+12016901385" },
-    { "name": "message", "value": "my text message" }
+    { "name": "apiKey", "value": "A...9" }
   ],
   "inputMappings": [
-    { "type": 1, "value": "[T.queryParams].From", "mapTo": "to" }
+    { "type": 1, "value": "[T.queryParams].lat", "mapTo": "lat" }
+    { "type": 1, "value": "[T.queryParams].long", "mapTo": "long" }
   ]
 }
 ```

@@ -17,7 +17,7 @@
       "type": "string"
     },
 	{
-      "name": "lang",
+      "name": "long",
       "type": "string"
     }
   ],
